@@ -16,7 +16,17 @@ const envSchema = z.object({
   JWT_REFRESH_EXPIRES_IN: z.string().default('7d'),
 });
 
-const parseResult = envSchema.safeParse(process.env);
+// Clean process.env of any accidental leading/trailing quotes pasted during cloud configuration
+const cleanedEnv = {};
+for (const [key, value] of Object.entries(process.env)) {
+  if (value && typeof value === 'string') {
+    cleanedEnv[key] = value.replace(/^['"]|['"]$/g, '');
+  } else {
+    cleanedEnv[key] = value;
+  }
+}
+
+const parseResult = envSchema.safeParse(cleanedEnv);
 
 if (!parseResult.success) {
   console.error('❌ Invalid environment variables:', parseResult.error.format());
