@@ -4,6 +4,7 @@ import { MediaManager } from '../media/mediaManager';
 import { FileIcon } from '../canvas/objects/FileObject';
 import { MediaImage } from '../canvas/objects/ImageObject';
 import { fabric } from 'fabric';
+import { API_URL } from '../config';
 
 export class DragDropHandler {
   static attach(canvas, boardId, token, onUploadSuccess) {
@@ -67,7 +68,7 @@ export class DragDropHandler {
           if (placeholderObj) canvas.remove(placeholderObj);
 
           if (data.type === 'image') {
-            const proxyUrl = `http://localhost:5000/api/v1/media/proxy/${data.mediaId}?token=${token}`;
+            const proxyUrl = `${API_URL}/media/proxy/${data.mediaId}?token=${token}`;
             fabric.Image.fromURL(proxyUrl, function(img) {
               if (!img || !img.getElement()) {
                 console.error('Failed to load proxy URL:', proxyUrl);

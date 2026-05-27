@@ -14,8 +14,7 @@ import HoverPreviews from '../components/Whiteboard/HoverPreviews';
 import MediaPreviewModal from '../components/Whiteboard/MediaPreviewModal';
 import ZoomControl from '../components/Whiteboard/ZoomControl';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+import { API_URL, SOCKET_URL } from '../config';
 
 const Whiteboard = () => {
   const { id } = useParams();
@@ -124,7 +123,7 @@ const Whiteboard = () => {
     try {
       const json = window.fabricCanvasInstance.toJSON(['id', 'customType', 'connectorData', 'semanticType', 'metadata', 'mediaId', 'fileName', 'mimeType', 'uploadStatus', 'version']);
       await axios.put(
-        `http://localhost:5000/api/v1/whiteboards/${activeWhiteboard._id}/canvas`,
+        `${API_URL}/whiteboards/${activeWhiteboard._id}/canvas`,
         { canvasData: json },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCollabStore } from '../../stores/useCollabStore';
 import { useCanvasStore } from '../../stores/useCanvasStore';
 import { useUIStore } from '../../stores/useUIStore';
+import { API_URL } from '../../config';
 
 const AIPanel = ({ isOpen, onClose }) => {
   const { token } = useCollabStore();
@@ -17,7 +18,7 @@ const AIPanel = ({ isOpen, onClose }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/whiteboards/${activeWhiteboard._id}/analyze`,
+        `${API_URL}/whiteboards/${activeWhiteboard._id}/analyze`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

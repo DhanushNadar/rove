@@ -1,5 +1,6 @@
 import { fabric } from 'fabric';
 import { useCollabStore } from '../../stores/useCollabStore';
+import { API_URL } from '../../config';
 
 // Extended Fabric Image Class for Board Media
 export const MediaImage = fabric.util.createClass(fabric.Image, {
@@ -48,7 +49,7 @@ MediaImage.fromObject = function(object, callback) {
   }
 
   const token = useCollabStore.getState().token;
-  const url = `http://localhost:5000/api/v1/media/proxy/${object.mediaId}`;
+  const url = `${API_URL}/media/proxy/${object.mediaId}`;
   
   // Create an image element manually to set headers if needed, 
   // but standard Image object doesn't support Authorization header.

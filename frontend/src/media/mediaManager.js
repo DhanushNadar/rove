@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '../config';
 
 export class MediaManager {
   static async uploadMedia(file, boardId, x, y, token) {
@@ -16,7 +17,7 @@ export class MediaManager {
     formData.append('y', y);
 
     try {
-      const response = await axios.post(`http://localhost:5000/api/v1/media/upload`, formData, {
+      const response = await axios.post(`${API_URL}/media/upload`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

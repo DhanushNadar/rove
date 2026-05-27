@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { fabric } from 'fabric';
 import axios from 'axios';
+import { API_URL } from '../../config';
 import { useUIStore } from '../../stores/useUIStore';
 import { useCollabStore } from '../../stores/useCollabStore';
 import { useCanvasStore } from '../../stores/useCanvasStore';
@@ -659,7 +660,7 @@ const CanvasEngine = () => {
       if (!board || !currentToken) return;
       try {
         await axios.put(
-          `http://localhost:5000/api/v1/whiteboards/${board._id}/canvas`,
+          `${API_URL}/whiteboards/${board._id}/canvas`,
           { canvasData: json },
           { headers: { Authorization: `Bearer ${currentToken}` } }
         );

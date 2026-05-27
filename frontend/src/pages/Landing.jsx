@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config';
 import { 
   MousePointer2, 
   Check, 
@@ -404,7 +405,7 @@ const Landing = () => {
   const triggerWakeUp = (targetPath) => {
     setIsWakingUp(true);
 
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+    // Use dynamic API_URL from config
 
     const checkHealth = async () => {
       try {
@@ -428,7 +429,7 @@ const Landing = () => {
 
   useEffect(() => {
     // 1. Silent backend wake-up ping in background to start spin-up immediately
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+    // Use dynamic API_URL from config
     axios.get(`${API_URL}/health`).catch(() => {
       // Ignored: silent background ping to spin up Render free-tier
     });

@@ -6,7 +6,7 @@ import { useCanvasStore } from '../stores/useCanvasStore';
 import { LogOut, Plus, Loader2, Pencil, UserPlus, Trash, X, Mail, User, Bell, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+import { API_URL } from '../config';
 
 const Dashboard = () => {
   const { token, user, logout } = useCollabStore();

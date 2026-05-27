@@ -7,6 +7,7 @@ import { AttachmentManager } from '../../context/attachmentManager';
 import { Paperclip, X, Download, Trash, FileText, FileImage, File, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 const AttachmentSidebar = () => {
   const { activeNodeId, setActiveNodeId } = useUIStore();
@@ -30,7 +31,7 @@ const AttachmentSidebar = () => {
       if (!board || !currentToken) return;
       try {
         await axios.put(
-          `http://localhost:5000/api/v1/whiteboards/${board._id}/canvas`,
+          `${API_URL}/whiteboards/${board._id}/canvas`,
           { canvasData: json },
           { headers: { Authorization: `Bearer ${currentToken}` } }
         );
@@ -76,7 +77,7 @@ const AttachmentSidebar = () => {
           
           <button 
              onClick={() => {
-                const proxyUrl = `http://localhost:5000/api/v1/media/proxy/${activeObj.mediaId}?token=${token}`;
+                const proxyUrl = `${API_URL}/media/proxy/${activeObj.mediaId}?token=${token}`;
                 const a = document.createElement('a');
                 a.href = proxyUrl;
                 a.download = activeObj.fileName || 'download';

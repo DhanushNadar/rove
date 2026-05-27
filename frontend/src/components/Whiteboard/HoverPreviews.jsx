@@ -2,6 +2,7 @@ import React from 'react';
 import { useMediaStore } from '../../stores/useMediaStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCollabStore } from '../../stores/useCollabStore';
+import { API_URL } from '../../config';
 
 const HoverPreviews = () => {
   const { hoveredMedia } = useMediaStore();
@@ -30,7 +31,7 @@ const HoverPreviews = () => {
           {type === 'image' && mediaId && (
             <div className="w-12 h-12 rounded bg-slate-100 border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
               <img 
-                src={`http://localhost:5000/api/v1/media/thumbnail/${mediaId}?token=${token}`}
+                src={`${API_URL}/media/thumbnail/${mediaId}?token=${token}`}
                 className="w-full h-full object-cover"
                 alt="Thumbnail preview"
               />

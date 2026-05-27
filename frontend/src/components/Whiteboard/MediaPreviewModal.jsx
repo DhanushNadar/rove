@@ -3,6 +3,7 @@ import { useMediaStore } from '../../stores/useMediaStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useCollabStore } from '../../stores/useCollabStore';
+import { API_URL } from '../../config';
 
 const MediaPreviewModal = () => {
   const { previewMediaId, setPreviewMediaId } = useMediaStore();
@@ -36,7 +37,7 @@ const MediaPreviewModal = () => {
           <div className="flex-1 overflow-auto flex items-center justify-center bg-slate-800/50 p-4">
             {/* The image is requested via the proxy endpoint securely */}
             <img 
-              src={`http://localhost:5000/api/v1/media/proxy/${previewMediaId}?token=${token}`}
+              src={`${API_URL}/media/proxy/${previewMediaId}?token=${token}`}
               className="max-w-full max-h-[80vh] object-contain rounded-lg"
               alt="Full Preview"
             />
