@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCollabStore } from '../stores/useCollabStore';
 import { Loader2 } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api/v1';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 const Login = () => {
   const { token, setTokenAndUser } = useCollabStore();

@@ -14,7 +14,8 @@ import HoverPreviews from '../components/Whiteboard/HoverPreviews';
 import MediaPreviewModal from '../components/Whiteboard/MediaPreviewModal';
 import ZoomControl from '../components/Whiteboard/ZoomControl';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 const Whiteboard = () => {
   const { id } = useParams();
@@ -69,7 +70,7 @@ const Whiteboard = () => {
 
     const fetchWhiteboard = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/whiteboards/${id}`, {
+        const res = await axios.get(`${API_URL}/whiteboards/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setActiveWhiteboard(res.data.data);
